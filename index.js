@@ -48,49 +48,44 @@ mySize(collection)
     Behavior:
         return number of values in collection.
 
-myFirst(array, [n])
-    Return Value:
-        Single element OR array
-    Behavior:
-        Returns first element of array.
-        Passing n returns first n elements of array.
-
 myLast(array, [n])
     Return Value:
         Single element OR array
     Behavior:
         Returns last element of array.
         Passing n returns last n elements of array.
-        
-myKeys(object)
-    Return Value:
-        array
-    Behavior:
-        Retrieve all names of object's enumerable properties
-
-myValues(object)
-    Return Value:
-        array
-    Behavior:
-        Return all values of object's properties
 */
 
+//Create function to check for Array or Object
+function standardizeCollection(collection){
+    //use If statements for Array or Object
+    if(Array.isArray(collection)){
+        return collection; //It is an Array, return as Array.
+    }
+    else{
+        return Object.values(collection); //False, change Object into an Array.
+    }
+}
+
 function myEach(collection, callback){
-    //
-    return collection;
+    let array = standardizeCollection(collection);
+    return array;
 }
 
 function myMap(collection, callback){
+    let array = standardizeCollection(collection);
     callback = (x) => x = x * 3;
     return collection.map(callback);
 }
 
 function myReduce(collection, callback, acc){
-
+    let array = standardizeCollection(collection);
+    //return
 }
 
 function myFind(collection, predicate){
-
+    let array = standardizeCollection(collection);
+    //
 }
 
 function myFilter(collection, predicate){
@@ -102,12 +97,12 @@ function mySize(collection){
 }
 
 function myFirst(arr, n){
-    if(n = undefined)
-    return arr[0];
+    if(n === undefined) return arr[0];
     else{
-        return arr.slice(0, n + 1);
+        return arr.slice(0, n);
         //Needs boolean?
     }
+
 }
 
 function myLast(arr, n){
@@ -120,22 +115,20 @@ function myLast(arr, n){
 }
 
 function myKeys(object){
-    //Use for in loop
     let arr = [];
     
     for(const key in object){
-        //
+        arr.push(key);
     }
+    return arr;
 }
 
 function myValues(object){
     //Use for of loop to push value into an Array
     let arr = [];
 
-    for(const value of object){
-        arr.push(value);
-        console.log(arr);
-        return arr;
+    for(const key in object){
+        arr.push(object[key]);
     }
     return arr;
 }
