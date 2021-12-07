@@ -67,12 +67,10 @@ function standardizeCollection(collection){ //Create function to check for Array
 
 function myEach(collection, callback){
     let array = standardizeCollection(collection);
-    callback = () => {
-        for(const val of array){
-            val === val;
-        }
+    for(const val of array){
+        callback(val);
     }
-    return array;
+    return collection;
 }
 
 function myMap(collection, callback){
