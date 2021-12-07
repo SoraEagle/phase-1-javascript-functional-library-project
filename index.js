@@ -56,9 +56,7 @@ myLast(array, [n])
         Passing n returns last n elements of array.
 */
 
-//Create function to check for Array or Object
-function standardizeCollection(collection){
-    //use If statements for Array or Object
+function standardizeCollection(collection){ //Create function to check for Array or Object
     if(Array.isArray(collection)){
         return collection; //It is an Array, return as Array.
     }
@@ -69,28 +67,46 @@ function standardizeCollection(collection){
 
 function myEach(collection, callback){
     let array = standardizeCollection(collection);
+    callback = () => {
+        for(const val of array){
+            val === val;
+        }
+    }
     return array;
 }
 
 function myMap(collection, callback){
     let array = standardizeCollection(collection);
     callback = (x) => x = x * 3;
-    return collection.map(callback);
+    return array.map(callback);
 }
 
 function myReduce(collection, callback, acc){
-    let array = standardizeCollection(collection);
+    callback = (acc, val, collection) => { //Arguements: acc, current element/value in iteration, and reference to entire collection
+        let array = standardizeCollection(collection); //Convert any Object into Array for .reduce.
+        let startVal = 0; //Inital starting value for .reduce method.
+        //
+        return array.reduce();
+    }
     //return
 }
 
 function myFind(collection, predicate){
     let array = standardizeCollection(collection);
-    //return 
+
+    predicate = () => {
+        //
+    }
+    //return val;
 }
 
 function myFilter(collection, predicate){
     let array = standardizeCollection(collection);
-    // return 
+
+    predicate = () => {
+        //
+    }
+    // return arr;
 }
 
 function mySize(collection){
@@ -108,18 +124,9 @@ function myFirst(arr, n){
 function myLast(arr, n){
     if(n === undefined) return arr[arr.length - 1];
     else{
-        console.log(arr.slice(arr.length - n, arr.length));
         return arr.slice(arr.length - n, arr.length);
     }
 }
-
-//[1, 2, 3, 4]
-//[0, 1, 2, 3]
-//[0, n, 2, 3]
-//[0, 1, n, 3, 4]
-//[0, 1, 2, n, 4, 5]
-//n = 3
-//[1, 2, 3]
 
 function myKeys(object){
     let arr = [];
