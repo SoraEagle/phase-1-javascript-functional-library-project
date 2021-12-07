@@ -85,34 +85,41 @@ function myReduce(collection, callback, acc){
 
 function myFind(collection, predicate){
     let array = standardizeCollection(collection);
-    //
+    //return 
 }
 
 function myFilter(collection, predicate){
-
+    let array = standardizeCollection(collection);
+    // return 
 }
 
 function mySize(collection){
-    return collection.length;
+    let array = standardizeCollection(collection);
+    return array.length;
 }
 
 function myFirst(arr, n){
     if(n === undefined) return arr[0];
     else{
         return arr.slice(0, n);
-        //Needs boolean?
     }
-
 }
 
 function myLast(arr, n){
-    if(n === undefined)
-    return arr[arr.length - 1];
+    if(n === undefined) return arr[arr.length - 1];
     else{
-        return arr.slice(n);
-        //Requires boolean?
+        console.log(arr.slice(arr.length - n, arr.length));
+        return arr.slice(arr.length - n, arr.length);
     }
 }
+
+//[1, 2, 3, 4]
+//[0, 1, 2, 3]
+//[0, n, 2, 3]
+//[0, 1, n, 3, 4]
+//[0, 1, 2, n, 4, 5]
+//n = 3
+//[1, 2, 3]
 
 function myKeys(object){
     let arr = [];
