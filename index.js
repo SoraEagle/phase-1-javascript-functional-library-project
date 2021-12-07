@@ -42,16 +42,19 @@ function myReduce(collection, callback, acc){
         
         for(let index = 0; index < length; index++){
             acc = callback(acc, array[index], array); //((val * 3) + acc)
-            console.log(callback(acc, array[index], array));
         }
     return acc;
 }
 
 function myFind(collection, predicate){
     let array = standardizeCollection(collection);
+    let val = undefined;
 
-    predicate()
-    //return val;
+    for(let index = 0; index < array.length; index++){
+        console.log(predicate(array[index]));
+        if(predicate(array[index])) return val = array[index];
+    }
+    return val;
     //myFind([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
 }
 
@@ -59,9 +62,10 @@ function myFilter(collection, predicate){
     let array = standardizeCollection(collection);
     let newArray = [];
 
-    predicate()
-    // return newArray;
-    //myFilter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+    for(let index = 0; index < array.length; index++){
+        if(predicate(array[index])) newArray.push(array[index]);
+    }
+    return newArray;
 }
 
 function mySize(collection){
