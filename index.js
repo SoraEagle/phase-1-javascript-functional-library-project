@@ -1,26 +1,4 @@
 /*
-myMap(collection, callback)
-    Return Value:
-        new array
-    Behavior:
-        Produces new array of values by mapping each value in collection through transformation function, callback.
-        returns new array without modifying original.
-
-myReduce(collection, callback, acc)
-    Return Value:
-        single value
-    Behavior:
-        Reduce iterates through collection of values and boils down into single value. 
-        acc (short for accumulator) starts at the value that's passed in as an argument, and 
-        with each successive step is updated to the return value of callback. 
-        If start value isn't passed to myReduce, first value in collection should be used as start value.
-        Callback is passed three arguments: current value of acc, current element/value in iteration, 
-        and reference to entire collection.
-
-        Hint: For case when a start value for accumulator isn't passed in as argument, 
-        think about how you'll need to adjust your function to account for fact that first
-        element of collection has already been accounted for.
-
 myFind(collection, predicate)
     Return Value:
         Single value
@@ -34,76 +12,56 @@ myFilter(collection, predicate)
     Behavior:
         Looks through each value in collection, returning array of all elements that pass 
         truth test (predicate).  If no matching values are found, return empty array.
-
-mySize(collection)
-    Return Value:
-        Integer
-    Behavior:
-        return number of values in collection.
-
-myLast(array, [n])
-    Return Value:
-        Single element OR array
-    Behavior:
-        Returns last element of array.
-        Passing n returns last n elements of array.
 */
 
 function standardizeCollection(collection){ //Create function to check for Array or Object
-    if(Array.isArray(collection)){
-        return collection; //It is an Array, return as Array.
-    }
-    else{
-        return Object.values(collection); //False, change Object into an Array.
-    }
+    if(Array.isArray(collection)) return collection; //It is an Array, return as Array.
+    else return Object.values(collection); //False, change Object into an Array.
 }
 
 function myEach(collection, callback){
     let array = standardizeCollection(collection);
-    for(const val of array){
-        callback(val);
-    }
+    for(const val of array) callback(val);
     return collection;
 }
 
-function myMap(collection, callback){ //Create a custom method with same methodology of .map
+function myMap(collection, callback){
     let array = standardizeCollection(collection);
-    for(const num of array){
-        callback(num);
-        console.log(callback(num)); //[3, 6, 9, 12]
-    }
-    console.log(array); //[1, 2, 3, 4]
-    return array;
-    //myMap([1, 2, 3], function(num){ return num * 3; });
+    let newArray = [];
+    for(let index = 0; index < array.length; index++) newArray.push(callback(array[index]));
+    return newArray;
 }
 
-function myReduce(collection, callback, acc){ //[1, 2, 3, 4]
-        let array = standardizeCollection(collection); //Convert any Object into Array for .reduce.
-        if(!acc) acc = array[0]; //Inital starting value (first element) for .reduce method.
-        for(const val of array){
-            callback(acc, val, collection);
-            console.log(callback(acc, val, collection));
+function myReduce(collection, callback, acc){
+        let array = standardizeCollection(collection);
+        if(!acc){ 
+            acc = array[0]; //Inital starting value (first element) for .reduce method.
+            array = array.slice(1);
         }
-        //myReduce(array, function(acc, val, collection) { return acc + val; }, 10);
+        let length = array.length;
+        
+        for(let index = 0; index < length; index++){
+            acc = callback(acc, array[index], array); //((val * 3) + acc)
+            console.log(callback(acc, array[index], array));
+        }
     return acc;
 }
 
 function myFind(collection, predicate){
     let array = standardizeCollection(collection);
 
-    predicate = () => {
-        //
-    }
+    predicate()
     //return val;
+    //myFind([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
 }
 
 function myFilter(collection, predicate){
     let array = standardizeCollection(collection);
+    let newArray = [];
 
-    predicate = () => {
-        //
-    }
-    // return arr;
+    predicate()
+    // return newArray;
+    //myFilter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
 }
 
 function mySize(collection){
@@ -113,33 +71,24 @@ function mySize(collection){
 
 function myFirst(arr, n){
     if(n === undefined) return arr[0];
-    else{
-        return arr.slice(0, n);
-    }
+    else return arr.slice(0, n);
 }
 
 function myLast(arr, n){
     if(n === undefined) return arr[arr.length - 1];
-    else{
-        return arr.slice(arr.length - n, arr.length);
-    }
+    else return arr.slice(arr.length - n, arr.length);
 }
 
 function myKeys(object){
     let arr = [];
     
-    for(const key in object){
-        arr.push(key);
-    }
+    for(const key in object) arr.push(key);
     return arr;
 }
 
 function myValues(object){
-    //Use for of loop to push value into an Array
     let arr = [];
 
-    for(const key in object){
-        arr.push(object[key]);
-    }
+    for(const key in object) arr.push(object[key]);
     return arr;
 }
