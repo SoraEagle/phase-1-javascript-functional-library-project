@@ -1,11 +1,4 @@
 /*
-myEach(collection, callback)
-    Return Value:
-        Original collection
-    Behavior:
-        Iterates over collection of elements, passing each element in turn to the callback function. 
-        Returns original collection.
-
 myMap(collection, callback)
     Return Value:
         new array
@@ -73,20 +66,26 @@ function myEach(collection, callback){
     return collection;
 }
 
-function myMap(collection, callback){
+function myMap(collection, callback){ //Create a custom method with same methodology of .map
     let array = standardizeCollection(collection);
-    callback = (x) => x = x * 3;
-    return array.map(callback);
+    for(const num of array){
+        callback(num);
+        console.log(callback(num)); //[3, 6, 9, 12]
+    }
+    console.log(array); //[1, 2, 3, 4]
+    return array;
+    //myMap([1, 2, 3], function(num){ return num * 3; });
 }
 
-function myReduce(collection, callback, acc){
-    callback = (acc, val, collection) => { //Arguements: acc, current element/value in iteration, and reference to entire collection
+function myReduce(collection, callback, acc){ //[1, 2, 3, 4]
         let array = standardizeCollection(collection); //Convert any Object into Array for .reduce.
-        let startVal = 0; //Inital starting value for .reduce method.
-        //
-        return array.reduce();
-    }
-    //return
+        if(!acc) acc = array[0]; //Inital starting value (first element) for .reduce method.
+        for(const val of array){
+            callback(acc, val, collection);
+            console.log(callback(acc, val, collection));
+        }
+        //myReduce(array, function(acc, val, collection) { return acc + val; }, 10);
+    return acc;
 }
 
 function myFind(collection, predicate){
