@@ -121,6 +121,11 @@ function myLast(arr, n){
 
 function myKeys(object){
     //Use for in loop
+    let arr = [];
+    
+    for(const key in object){
+        //
+    }
 }
 
 function myValues(object){
