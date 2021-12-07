@@ -124,12 +124,13 @@ function myKeys(object){
 }
 
 function myValues(object){
-    //Use a for of loop to push value into an Array
+    //Use for of loop to push value into an Array
     let arr = [];
 
     for(const value of object){
-        let toArr = arr.push(value);
-        return toArr;
+        arr.push(value);
+        console.log(arr);
+        return arr;
     }
     return arr;
 }
