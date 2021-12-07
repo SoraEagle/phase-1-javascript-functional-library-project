@@ -51,8 +51,7 @@ function myFind(collection, predicate){
     let val = undefined;
 
     for(let index = 0; index < array.length; index++){
-        console.log(predicate(array[index]));
-        if(predicate(array[index])) return val = array[index];
+        if(predicate(array[index])) return array[index];
     }
     return val;
     //myFind([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
